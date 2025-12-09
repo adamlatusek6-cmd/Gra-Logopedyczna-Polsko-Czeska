@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fabryka Głosów - Detektywistyczna Gra Logopedyczna</title>
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+    <!-- Dziennik Button - positioned over factory background -->
+    <img src="assets/images/dziennik.png" alt="Otwórz dziennik" id="journalBtn" title="Otwórz dziennik">
+    <!-- Dziennik Button - positioned over factory background -->
+    <img src="assets/images/angFlaga.png"  id="angBtn" title="Otwórz dziennik">
+    
+    <!-- NOWY: Globalny przycisk mikrofonu (obok dziennika) -->
+    <div id="globalMicBtn" class="global-mic-button" title="Mikrofon">
+        🎤
+    </div>
+    <div id="score" class="global-points" title="Punkty" style="display: none;">PUNKTY: 0</div>
+
+    <!-- Main Menu Screen -->
+    <div id="mainMenu" class="screen active">
+        <div class="container">
+            
+            <h1 class="game-title">🏭 Fabryka Głosów</h1>
+            <h2 class="game-subtitle">Detektywistyczna Gra Logopedyczna</h2>
+            <p class="game-description">
+                Wciel się w rolę detektywa w tajemniczej fabryce. 
+                Rozwiązuj zagadki używając głosu i doskonaląc wymowę trudnych głosek polskich.
+            </p>
+            <button id="startGameBtn" class="btn btn-primary">Rozpocznij śledztwo</button>
+            <button id="helpBtn" class="btn btn-outline">Instrukcje</button>
+            <a class="btn btn-primary" href="CZ.html">Česká verze</a>
+            
+        </div>
+    </div>
+
+    <!-- EKRAN WSTĘPU z przyciskiem TAK -->
+    <div id="storyIntroScreen" class="screen">
+        <div class="container intro-story-container">
+            <h2 class="intro-story-title">Detektywie!</h2>
+            <h2 class="intro-story-title1-ang">(Detective!)</h2>
+            <div class="intro-story-text">
+                <p>W zakamarkach Fabryki grasuje tajemniczy sabotażysta. Mówi sepleniącym, zniekształconym głosem i niszczy wszystko, co tylko uda mu się dorwać. 
+Jeśli nie zatrzymamy go na czas — nikt już nigdy nie powie nic poprawnie! Tylko ty i twój glos mogą nam pomóc.” – list właściciela fabryki </p>
+                <p class="ang">(You've arrived at a mysterious factory. Inside lie puzzles that can only be solved with your voice.)</p>
+                <p>Gotowy na wyzwanie? </p>
+                <p class="ang">(Are you ready for this challenge?)</p>
+            </div>
+            <button id="introYesBtn" class="btn btn-primary btn-large">TAK</button>
+        </div>
+    </div>
+
+    <!-- EKRAN Z DRZWIAMI -->
+    <div id="doorScreen" class="screen">
+        <div class="door-background">
+            <div class="door-main-container">
+                <!-- MIEJSCE NA ZDJĘCIE DRZWI -->
+                <img src="assets/images/drzwi.png" alt="Drzwi do fabryki" class="main-image">
+                
+                <!-- Nakładka z instrukcją (bez przycisku mikrofonu) -->
+                <div class="door-interaction-overlay">
+                    <h2 class="door-title">Wejście do Fabryki</h2>
+                    <p class="door-instruction">
+                        Aby wejść, wypowiedz:<br>
+                        <strong class="voice-command">"Otwórz drzwi"</strong>
+                    </p>
+                    <!-- Feedback pod globalnym mikrofonem -->
+                    <p id="doorSpeechResult" class="speech-feedback"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Factory View Screen -->
+    <div id="factoryScreen" class="screen">
+        <div class="factory-background">
+            <div class="factory-container">
+                <img src="assets/images/Fabryka.png" alt="Fabryka" class="main-image">
+                <img src="assets/images/maszyna-1-nap.png" id="1-nap" alt="Fabryka" class="main-image" style="display: none;">
+                <img src="assets/images/kable-n.png" id="kable-nap" alt="Fabryka" class="main-image" style="display: none;">
+                <button id="machineBtn1" class="machine-button1" style="display: block;">
+                    <img src="assets/images/maszyna1-mini.png" alt="Maszyna1" class="machine-image1">
+                </button>
+                <button id="machineBtn2" class="machine-button2" style="display: block;">
+                    <img src="assets/images/kable-mini.png" alt="Maszyna2" class="machine-image2">
+                </button>
+                <button id="machineBtn3" class="machine-button3" style="display: block;">
+                    <img src="assets/images/robot-mini.png" alt="Maszyna3" class="machine-image3">
+                </button>
+                <button id="machineBtn4" class="machine-button4" style="display: block;">
+                    <img src="assets/images/s3-mini.png" alt="Maszyna3" class="machine-image4">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Screen Maszyna 1 -->
+    <div id="gameScreen" class="screen">
+        <div class="game-window">
+            <h2 id="levelTitle" class="levels-instructions">Poziom</h2>
+            <p id="levelHint" class="level-hints">Wskazówka</p>
+            <!-- Feedback zamiast przycisku mikrofonu -->
+            <p id="speechResult" class="speech-feedback"></p>
+            <button id="backBtn" class="btn btn-secondary">Powrót do Fabryki</button>
+        </div>
+    </div>
+
+
+    <!-- Game Screen Kable -->
+    <div id="gameScreenKable" class="screen">
+        <div class="kable-background">
+            <div class="kable-container">
+                <img src="assets/images/kable-4.png" alt="Kable" class="main-image">
+                
+                <img src="assets/images/kab-czerwony.png" alt="Kable" class="main-image" id="kab-czerwony" style="display: none;">
+                <img src="assets/images/kab-brązowy.png" alt="Kable" class="main-image" id="kab-brazowy" style="display: none;">
+                <img src="assets/images/kab-pom.png" alt="Kable" class="main-image" id="kab-pomaranczowy" style="display: none;">
+                <img src="assets/images/kab-żółty.png" alt="Kable" class="main-image" id="kab-zolty" style="display: none;">
+                <img src="assets/images/kab-grana.png" alt="Kable" class="main-image" id="kab-granatowy" style="display: none;">
+                <img src="assets/images/kab-szary.png" alt="Kable" class="main-image" id="kab-szary" style="display: none;">
+                
+
+            </div>
+            <p id="kableSpeechResult" class="speech-feedback"></p>
+
+            <button id="backBtnKable" class="btn btn-secondary">Powrót do Fabryki</button>
+        </div>
+    </div>
+
+    <!-- GAME SCREEN SKRZYNIE -->
+    <div id="gameScreenSkrzynie" class="screen">
+        <div class="factory-background">
+            <div class="game-window" style="width: 95%; height: 95%;">
+                <!-- Zawartość będzie dynamicznie tworzona przez initPoziomSkrzynie() -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Instrukcje Screen -->
+    <div id="instructionsScreen" class="screen">
+        <div class="container instructions-container">
+            <h2>Instrukcja Gry</h2>
+            
+            <div class="instructions-content">
+                <h3>🎯 Cel Gry</h3>
+                <p>Rozwiązuj zagadki logopedyczne w tajemniczej fabryce. Używaj głosu do interakcji z maszynami i doskonalenia wymowy trudnych głosek polskich i czeskich!</p>
+                
+                <h3>🎮 Jak Grać?</h3>
+                <ol>
+                    <li>Kliknij przycisk mikrofonu 🎤 w prawym górnym rogu</li>
+                    <li>Wyraźnie wypowiedz podane słowo lub frazę</li>
+                    <li>Gra rozpozna Twoją wymowę i przyzna punkty</li>
+                    <li>Zbieraj punkty i odblokuj nowe poziomy!</li>
+                </ol>
+                
+                <h3>💡 Wskazówki</h3>
+                <ul class="tips-list">
+                    <li>Mów wyraźnie i spokojnie</li>
+                    <li>Słuchawki z mikrofonem poprawiają rozpoznawanie</li>
+                    <li>Globalny przycisk mikrofonu (🎤) pojawia się tylko gdy jest potrzebny</li>
+                    <li>Eksploruj dziennik detektywa aby odblokować minigry</li>
+                </ul>
+            </div>
+
+            <button id="backFromInstructionsBtn" class="btn btn-secondary">Powrót do Menu</button>
+        </div>
+    </div>
+
+    <!-- Dziennik Screen -->
+    <div id="journalScreen" class="screen">
+        <div class="container book-container">
+            <h2>Dziennik Detektywa</h2>
+            <div id="book">
+                <!-- Strona 1 -->
+                <div class="book-page" id="page0">Strona 1: Witaj w dzienniku!</div>
+                
+                <!-- Strona 2 -->
+                <div class="book-page" id="page1" style="display:none;">Strona 2: Twoje postępy zostaną tu zapisane.</div>
+
+                <!-- STRONA 2: MINIGRA UKŁADANIE SŁOWA -->
+                <div id="page2" class="journal-page" style="display:none;">
+                <div class="journal-page-content">
+                    <h2>Pokój Sterowania - Zagadka Słowna</h2>
+                    <p>Znajdujesz starą notatkę w pokoju sterowania. Na kartce jest wypisane słowo, ale litery są wymieszane...</p>
+                    
+                    <!-- MINIGRA TUTAJ -->
+                    <div id="miniGameUkadanieSowa">
+                        
+                        <div id="gameLetters" class="letters-container"></div>
+                        
+                        <div id="gameOutput" class="word-output"></div>
+                        
+                        <button id="resetUkadanieSowaBtn" class="btn btn-secondary">
+                            Wyczyść
+                        </button>
+                        
+                    </div>
+                </div>
+                </div>
+
+                <!-- Strona 4 z minigrą Drag & Drop -->
+                <div class="book-page" id="page3" style="display:none;">
+                    <div id="page3-original-content">
+                        Strona 4 - Notatki własne i osiągnięcia.
+                    </div>
+                    
+                    <div id="miniGameFactoryDrag" class="mini-game page-minigame" style="display:none;">
+                        <h3>Dopasuj elementy automatyki do nazw</h3>
+                        <div class="game-instructions">
+                            Przeciągnij obrazki do odpowiadających im nazw
+                        </div>
+                        
+                        <div id="factoryImages" class="drag-images-container"></div>
+                        <div id="factoryTargets" class="drop-targets-container"></div>
+                        
+                        <div class="game-controls">
+                            <button id="resetFactoryDragBtn" class="btn btn-secondary">Reset gry</button>
+                        </div>
+                        <div id="dragDropResult" class="game-result"></div>
+                    </div>
+                </div>
+
+                <!-- Strona 4 z minigrą Kable-->
+                <div id="page4" class="book-page" style="display:none;">
+                    <div id="miniGamePolskoCzeskieKable" style="display: none;">
+                        <div class="overlay-minigame">
+                            <div class="cables-game-container">
+                                <div class="cables-column left-cables">
+                                    <h4>Polski</h4>
+                                    <div id="polishCables" class="cables-list"></div>
+                                </div>
+
+                                <canvas id="cablesCanvas" class="cables-canvas"></canvas>
+
+                                <div class="cables-column right-cables">
+                                    <h4>Čeština</h4>
+                                    <div id="czechCables" class="cables-list"></div>
+                                </div>
+                            </div>
+
+                            <div class="game-result">
+                                <div id="cablesResult" class="word-output">Połącz wszystkie słowa!</div>
+                            </div>
+                            
+                            <div class="game-controls">
+                                <button id="resetCablesBtn" class="btn btn-secondary">Reset Gry</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="book-nav">
+                <button class="btn btn-secondary" id="prevPageBtn">⬅ Poprzednia strona</button>
+                <button class="btn btn-secondary" id="nextPageBtn">Następna strona ➡</button>
+            </div>
+
+            <div class="journal-back-container">
+                <button id="backFromJournalBtn">Powrót do Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SYSTEM DIALOGÓW - Umieść gdziekolwiek w HTML -->
+    <div class="dialog-overlay" id="dialogOverlay">
+        <div class="dialog-box">
+            <div class="dialog-speaker-icon" id="dialogIcon">🗣️</div>
+            <div class="dialog-content">
+                <div class="dialog-speaker-name" id="dialogSpeakerName">NPC</div>
+                <div class="dialog-text" id="dialogText">Tekst dialogo...</div>
+            </div>
+            <button class="dialog-close-btn" id="dialogCloseBtn">✕</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    
+    <script src="src/jsPL/A_Main.js"></script>
+    <script src="src/jsPL/CustomAlert.js"></script>
+    <script src="src/jsPL/Drag-Drop.js"></script>
+    <script src="src/jsPL/Kable.js"></script>
+    <script src="src/jsPL/UkladanieSlowa.js"></script>
+    <script src="src/jsPL/PoziomSkrzynie.js"></script>
+    <script src="src/jsPL/Dialogi.js"></script>
+</body>
+</html>
