@@ -23,7 +23,7 @@ function initMazeGame(gameInstance) {
     // STATYCZNY LABIRYNT - Zmień tutaj kształt labiryntu
     // STATYCZNY LABIRYNT - Zmień tutaj kształt labiryntu
     const STATIC_MAZE = [
-        [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1],
         [1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1],
         [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
@@ -57,7 +57,7 @@ function initMazeGame(gameInstance) {
         playerX: 13,
         playerY: 5,
         goalX: 1,
-        goalY: 0,
+        goalY: 1,
         completed: false,
         moves: 0,
         availableMoves: [],

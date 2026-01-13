@@ -22,7 +22,7 @@ class VoiceFactoryGame {
         this.gameerrorsound = 0;
         this.ruryEnd = false;
         this.ruryStart = false;
-        this.sterujacaEnd = true;
+        this.sterujacaEnd = false;
         this.sterujacaHint = false;
         this.GameFinal = false;
 
@@ -531,8 +531,12 @@ class VoiceFactoryGame {
                     { speakerId: 'detektyw', text: 'Tak, ciebie.' },
                     { speakerId: 'sabotazysta', text: 'P-przepraszam… Już n-nie będę. P-proszę… naprawcie mój głos.' },
                     { speakerId: 'wlasciciel', text: 'Detektywie, bez ciebie fabryka by nie przetrwała! Złoczyńca został złapany, a my w końcu możemy naprawić nie tylko maszyny, ale też… jego.' },
-
-                ]);
+                    
+                ], () => {
+                    // ✅ TO SIĘ WYKONAUJE PO OSTATNIM DIALOGU!
+                    console.log("✅ CALLBACK ZADZIAŁAŁ!");
+                    this.checkAllBadges();
+                });
 
             } else {
                 DialogSystem.showSequence([
@@ -547,12 +551,16 @@ class VoiceFactoryGame {
                     { speakerId: 'detektyw', text: 'Yes, you.' },
                     { speakerId: 'saboteur', text: 'I-I’m sorry… I won’t do it anymore. P-please… fix my voice.' },
                     { speakerId: 'wlasciciel', text: 'Detective, without you the factory would not have survived! The villain has been caught, and we can finally fix not only the machines, but also… him.' },
+                    this.checkAllBadges()
 
-
-                ]);
+                ], () => {
+                    // ✅ TO SIĘ WYKONAUJE PO OSTATNIM DIALOGU!
+                    console.log("✅ CALLBACK ZADZIAŁAŁ!");
+                    this.checkAllBadges();
+                });
 
             }
-            this.checkAllBadges();
+            
         }
 
         this.previousScreen = "factoryScreen";
@@ -695,8 +703,9 @@ class VoiceFactoryGame {
             this.badge4.style.display = "block";
         }
     }
-    // ===== SPRAWDZENIE WSZYSTKICH ODZNAK =====
+    // ===== SPRAWDZENIE WSZYSTKICH ODZNAK i koniec gry =====
 
+    
     checkAllBadges() {
         // Sprawdź czy wszystkie 9 odznak są odblokowane (1-9)
         // badge10 = ostatnia złota odznaka
@@ -721,13 +730,13 @@ class VoiceFactoryGame {
                 // Pokaż alertu
                 if (this.EngMode === false) {
                     customAlert.success(
-                        'GRATULACJE! Odblokowałeś wszystkie odznaki i ukończyłeś grę w 100%! Otrzymujesz specjalną odznak Mistrza Fabryki Gosów!',
-                        'Mistrzowski Poziom!'
+                        'GRATULACJE! Odblokowałeś wszystkie odznaki i ukończyłeś grę w 100%! Otrzymujesz specjalną odznak Mistrza Fabryki Gosów! Dziękujemy za grę.',
+                        'Koniec gry na mistrzowskim poziomie!'
                     );
                 } else {
                     customAlert.success(
-                        'CONGRATULATIONS! You have unlocked all badges and completed the game 100%! You receive a special Master of the Voice Factory badge!',
-                        'Master Level!'
+                        'CONGRATULATIONS! You have unlocked all badges and completed the game 100%! You receive a special Master of the Voice Factory badge! Thank you for playing',
+                        'The end on a master Level!'
                     );
                 }
 
@@ -736,7 +745,20 @@ class VoiceFactoryGame {
                     this.badge10.style.display = "block";
                 }
             }
-        }
+            
+        }else{
+                if (this.EngMode === false) {
+                    customAlert.success(
+                        'GRATULACJE! Naprawiłeś Fabrykę w całości! Dziękujemy za grę!',
+                        'KONIEC GRY!'
+                    );
+                } else {
+                    customAlert.success(
+                        'CONGRATULATIONS! You have fixed the factory! Thank you for playing!',
+                        'THE END!'
+                    );
+                }
+            }
     }
 
 
@@ -1184,18 +1206,18 @@ class VoiceFactoryGame {
     // BAZA OWOCÓW - BEZ POWTÓRZEŃ MIĘDZY LEWYMI A PRAWYMI
     RURY_FRUITS_DATABASE = {
         left: [
-            'jabłko', 'gruszka', 'śliwka', 'brzoskwinia', 'nektaryna',
-            'truskawka', 'malina', 'jeżyna', 'porzeczka', 'agrest',
-            'borówka', 'żurawina', 'pigwa', 'nispero', 'owoce leśne',
-            'morwa', 'winia', 'cały arbuz', 'wielkie mango', 'słodki banan',
-            'świeża brzoskwinia', 'dojrzały kiwi', 'soczyste gruszki', 'czerwone truskawki', 'czarne jeżyny'
+            'procesor', 'kontroler', 'zasilanie', 'kodowanie', 'sygnał',
+            'interfejs', 'wzmacnianie', 'wyjście', 'układ', 'przyrząd',
+            'regulator', 'kompilator', 'protokół', 'oscylowanie', 'modulacja',
+            'dekodowanie', 'binarne', 'suwak', 'enkodowanie', 'sekwencja',
+            'asynchroniczny', 'filtracja', 'amplifikacja', 'diagnostyka', 'precyzja'
         ],
         right: [
-            'banan', 'ananas', 'wiśnia', 'czereśnia', 'morela',
-            'melon', 'arbuz', 'grejpfrut', 'jagoda', 'aronia',
-            'dzika róża', 'acerola', 'liczi', 'pitaja',
-            'rambutan', 'durian', 'karambola', 'cherimoya',
-            'granatowiec', 'kumkwat', 'żurawina amerykańska', 'owoce aronii', 'świeży ananas'
+            'złącze', 'wzmacniacz', 'opuszczacz', 'pojemność', 'dioda',
+            'transistor', 'termistor', 'varistor', 'przesianie', 'konwerter',
+            'demodulator', 'komparator', 'generator', 'oscylator', 'integrator',
+            'komutator', 'zasobnik', 'stabilizator', 'transformator', 'separator',
+            'korektor', 'kaskada', 'sprzęgło'
         ]
     };
 
@@ -1251,7 +1273,12 @@ class VoiceFactoryGame {
         this.displayRuryInitialRotations();
         this.generateRuryWords();
         document.getElementById('RurySpeechResult').textContent = '';
-        this.showFeedback('🍎 Wymów nazwy owoców aby obracać rury!', '#3b82f6');
+        
+        if (this.EngMode === false) {
+                this.showFeedback('Wymów wyrazy aby obracać rury!', '#3b82f6');
+            } else {
+                this.showFeedback('Pronounce the words to rotate the pipes!', '#3b82f6');
+            }
     }
 
 
@@ -1328,9 +1355,9 @@ class VoiceFactoryGame {
 
         // 🆕 JĘZYK-ZALEŻNY TEKST
         if (this.EngMode) {
-            this.skipButtonRury.textContent = '⏳ Skip Fruit (-50 pts)';
+            this.skipButtonRury.textContent = '⏳ Change words layout (-50 pts)';
         } else {
-            this.skipButtonRury.textContent = '⏳ Pomiń owoc (-50 pkt)';
+            this.skipButtonRury.textContent = '⏳ Zmień słowa (-50 pkt)';
         }
 
         this.skipButtonRury.className = 'btn btn-secondary';
@@ -1352,19 +1379,35 @@ class VoiceFactoryGame {
 
     // ===== 🆕 NOWA METODA - Obsługa kliknięcia przycisku pominięcia =====
     skipRuryFruit() {
-        this.showFeedback(
-            '⏳ Owoc pominięty. Brak obrotu rury!',
+        
+        if (this.EngMode) {
+            this.showFeedback(
+            '⏳ Words are changed',
             '#f97316'
-        );
+            )
+        } else {
+            this.showFeedback(
+            '⏳ Słowa zmienione',
+            '#f97316'
+            );
+        }
 
         // ← NOWE: KARA PUNKTOWA
         this.addPoints(-50);
 
         // ← NOWE: FEEDBACK O KARZE
-        this.showFeedback(
-            '❌ Kara: -50 punktów za użycie przycisku!',
+        
+        if (this.EngMode) {
+            this.showFeedback(
+            '❌ Penality: -50 points!',
             '#ef4444'
-        );
+            )
+        } else {
+            this.showFeedback(
+            '❌ Kara: -50pkt!',
+            '#ef4444'
+            );
+        }
 
         // Reszta bez zmian
         this.ruryErrorCount = 0;
@@ -1377,7 +1420,12 @@ class VoiceFactoryGame {
         this.generateRuryWords();
         this.displayRuryWords();
 
-        this.showFeedback('🔄 Nowe owoce! Spróbuj ponownie.', '#3b82f6');
+        
+        if (this.EngMode) {
+            this.showFeedback('🔄 New words! Try again.', '#3b82f6');
+        } else {
+            this.showFeedback('🔄 Nowe słowa! Spróbuj ponownie.', '#3b82f6');
+        }
     }
 
 
@@ -1399,7 +1447,11 @@ class VoiceFactoryGame {
             // ✅ Sprawdzenie LEWEGO słowa
             if (lowerTranscript.includes(words.left.toLowerCase())) {
                 this.rotateRura(ruraId, -1);
-                this.showFeedback(`✅ ${words.left} - Rura ${i} w lewo!`, '#10b981');
+                 if (this.EngMode) {
+                    this.showFeedback(`✅ ${words.right} -Pipe ${i} to the left!`, '#10b981');
+                } else {
+                    this.showFeedback(`✅ ${words.right} - Rura ${i} w lewo!`, '#10b981');
+                }
 
                 rotated = true;
                 matchedRura = i;
@@ -1423,7 +1475,12 @@ class VoiceFactoryGame {
             // ✅ Sprawdzenie PRAWEGO słowa
             else if (lowerTranscript.includes(words.right.toLowerCase())) {
                 this.rotateRura(ruraId, 1);
-                this.showFeedback(`✅ ${words.right} - Rura ${i} w prawo!`, '#10b981');
+                
+                 if (this.EngMode) {
+                    this.showFeedback(`✅ ${words.right} -Pipe ${i} to the right!`, '#10b981');
+                } else {
+                    this.showFeedback(`✅ ${words.right} - Rura ${i} w prawo!`, '#10b981');
+                }
 
                 rotated = true;
                 matchedRura = i;
@@ -1450,19 +1507,35 @@ class VoiceFactoryGame {
             // 🆕 ZWIĘKSZ licznik błędów
             this.ruryErrorCount++;
 
+            
+            if (this.EngMode) {
             this.showFeedback(
-                `❌ Nie rozpoznano owocu. Spróbuj ponownie! (${this.ruryErrorCount}/${this.ruryMaxErrors})`,
+                `❌ Word not found. Please try again! (${this.ruryErrorCount}/${this.ruryMaxErrors})`,
                 '#ef4444'
             );
+            } else {
+                this.showFeedback(
+                `❌ Nie rozpoznano słowa. Spróbuj ponownie! (${this.ruryErrorCount}/${this.ruryMaxErrors})`,
+                '#ef4444'
+                );
+            }
 
             // 🆕 SPRAWDZENIE LIMITU BŁĘDÓW
             if (this.ruryErrorCount >= this.ruryMaxErrors) {
                 this.showSkipButtonRury();  // ← POKAŻ PRZYCISK
 
+                
+                if (this.EngMode) {
                 this.showFeedback(
+                    '⚠️ You reached 3 errors! The skip button is now available."',
+                    '#f97316'
+                    );
+                } else {
+                    this.showFeedback(
                     '⚠️ Osiągnąłeś 3 błędy! Pojawił się przycisk pominięcia.',
                     '#f97316'
-                );
+                    );
+                }
             }
 
             this.recordFailedAttempt('rury');
@@ -1784,154 +1857,144 @@ const DialogSystem = {
         }
     },
 
-    sequence: [],
+sequence: [],
     currentIndex: 0,
-    onSequenceComplete: null,
+    onSequenceComplete: null, // ← CALLBACK
 
-    // WYŚWIETL SEKWENCJĘ DIALOGÓW
-    showSequence: function (dialogArray, onComplete) {
+    // ✅ POPRAWIONA METODA
+    showSequence: function(dialogArray, onComplete) {
         this.sequence = dialogArray;
         this.currentIndex = 0;
-        this.onSequenceComplete = onComplete;
+        this.onSequenceComplete = onComplete; // ← ZAPISZ CALLBACK
+        console.log("📋 Start sekwencji, callback:", onComplete ? "YES" : "NO");
         this.displayCurrentDialog();
     },
 
-    // WYŚWIETL OBECNY DIALOG W SEKWENCJI
-    displayCurrentDialog: function () {
+    // ✅ POPRAWIONA METODA - TUTAJ BYŁ PROBLEM
+    displayCurrentDialog: function() {
+        console.log(`📍 Dialog ${this.currentIndex}/${this.sequence.length}`);
+        
+        // KONIEC SEKWENCJI
         if (this.currentIndex >= this.sequence.length) {
+            console.log("🔚 KONIEC SEKWENCJI!");
             this.hide();
+            
+            // ✅ TUTAJ WYWOŁAJ CALLBACK!
             if (this.onSequenceComplete) {
+                console.log("✅ Callback wykonywany!");
                 this.onSequenceComplete();
             }
             return;
         }
 
+        // WYŚWIETL OBECNY DIALOG
         const current = this.sequence[this.currentIndex];
-        const speaker = this.dialogs[current.speakerId] || { iconUrl: null, name: 'Nieznany' };
+        const speaker = this.dialogs[current.speakerId] || {
+            iconUrl: null,
+            name: "Nieznany"
+        };
 
         // Aktualizuj ikonę
-        const iconElement = document.getElementById('dialogIcon');
+        const iconElement = document.getElementById("dialogIcon");
         if (speaker.iconUrl) {
-            iconElement.innerHTML = `<img src="${speaker.iconUrl}" alt="${speaker.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">`;
+            iconElement.innerHTML = `<img src="${speaker.iconUrl}" alt="${speaker.name}" style="width: 100; height: 100; object-fit: cover; border-radius: 8px">`;
         } else {
-            iconElement.innerHTML = ''; // Brak ikony dla info
+            iconElement.innerHTML = "";
         }
 
         // Aktualizuj nazwę i tekst
-        document.getElementById('dialogSpeakerName').textContent = speaker.name || 'Nieznany';
-        document.getElementById('dialogText').textContent = current.text;
+        document.getElementById("dialogSpeakerName").textContent = speaker.name || "Nieznany";
+        document.getElementById("dialogText").textContent = current.text;
 
         // Pokaż overlay
-        const overlay = document.getElementById('dialogOverlay');
+        const overlay = document.getElementById("dialogOverlay");
         if (overlay) {
-            overlay.classList.add('show');
+            overlay.classList.add("show");
         }
+
+        // Wyłącz sekwencję (gracz będzie klikać dalej)
+        this.sequence = this.sequence;
+        this.currentIndex = this.currentIndex;
     },
 
-    // NASTĘPNY DIALOG W SEKWENCJI
-    nextInSequence: function () {
+    // ✅ PRZEJŚCIE DO NASTĘPNEGO DIALOGU
+    nextInSequence: function() {
         this.currentIndex++;
         this.displayCurrentDialog();
     },
 
-    // GŁÓWNA METODA - Wyświetlaj pojedynczy dialog
-    show: function (speakerId, text) {
-        const speaker = this.dialogs[speakerId] || { iconUrl: null, name: 'Nieznany' };
+    // ... RESZTA BEZ ZMIAN (show, hide, addSpeaker)
 
-        // Aktualizuj ikonę
-        const iconElement = document.getElementById('dialogIcon');
-        if (speaker.iconUrl) {
-            iconElement.innerHTML = `<img src="${speaker.iconUrl}" alt="${speaker.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">`;
-        } else {
-            iconElement.innerHTML = '';
-        }
-
-        // Aktualizuj nazwę i tekst
-        document.getElementById('dialogSpeakerName').textContent = speaker.name || 'Nieznany';
-        document.getElementById('dialogText').textContent = text;
-
-        // Pokaż overlay
-        const overlay = document.getElementById('dialogOverlay');
+    hide: function() {
+        const overlay = document.getElementById("dialogOverlay");
         if (overlay) {
-            overlay.classList.add('show');
-        }
-
-        // Wyłącz sekwencję
-        this.sequence = [];
-        this.currentIndex = 0;
-    },
-
-    // ZAMKNIJ DIALOG
-    hide: function () {
-        const overlay = document.getElementById('dialogOverlay');
-        if (overlay) {
-            overlay.classList.remove('show');
+            overlay.classList.remove("show");
         }
     },
 
-    // DODAJ NOWĄ POSTAĆ
-    addSpeaker: function (id, name, iconUrl) {
+    addSpeaker: function(id, name, iconUrl) {
         this.dialogs[id] = { iconUrl: iconUrl, name: name };
     }
 };
 
-// ===== DIALOG EVENT LISTENERS - OBSŁUGA KLIKANIA =====
-
-// Czekaj aż DOM się załaduje
-document.addEventListener('DOMContentLoaded', function () {
-    // Klikanie na przycisk zamknięcia (X)
-    const closeBtn = document.getElementById('dialogCloseBtn');
+// ✅ EVENT LISTENERS - OBSŁUGA KLIKANIA
+document.addEventListener("DOMContentLoaded", function() {
+    // Klikanie na przycisk zamknięcia X
+    const closeBtn = document.getElementById("dialogCloseBtn");
     if (closeBtn) {
-        closeBtn.addEventListener('click', function (e) {
+        closeBtn.addEventListener("click", function(e) {
             e.stopPropagation();
-
-            if (DialogSystem.sequence && DialogSystem.sequence.length > 0 && DialogSystem.currentIndex < DialogSystem.sequence.length - 1) {
-                // Jest jeszcze dialog w sekwencji
+            if (DialogSystem.sequence && DialogSystem.sequence.length > 0 && 
+                DialogSystem.currentIndex < DialogSystem.sequence.length - 1) {
                 DialogSystem.nextInSequence();
             } else {
-                // Nie ma już dialogów - zamknij
                 DialogSystem.hide();
+                if (DialogSystem.onSequenceComplete) {
+                    DialogSystem.onSequenceComplete();
+                }
             }
         });
     }
 
-    // Klikanie na całą zawartość dialogu (dialog-box)
-    const dialogBox = document.querySelector('.dialog-box');
+    // Klikanie na dialog
+    const dialogBox = document.querySelector(".dialog-box");
     if (dialogBox) {
-        dialogBox.addEventListener('click', function (e) {
-            // Sprawdź czy kliknięto na sam dialog, nie na przyciski
-            if (e.target.classList.contains('dialog-box') ||
-                e.target.classList.contains('dialog-content') ||
-                e.target.closest('.dialog-content')) {
-
-                if (DialogSystem.sequence && DialogSystem.sequence.length > 0 && DialogSystem.currentIndex < DialogSystem.sequence.length - 1) {
-                    DialogSystem.nextInSequence();
-                } else {
-                    DialogSystem.hide();
+        dialogBox.addEventListener("click", function(e) {
+            if (e.target.classList.contains("dialog-box") || 
+                e.target.classList.contains("dialog-content") || 
+                e.target.closest(".dialog-content")) {
+                if (DialogSystem.sequence && DialogSystem.sequence.length > 0) {
+                    if (DialogSystem.currentIndex < DialogSystem.sequence.length - 1) {
+                        DialogSystem.nextInSequence();
+                    } else {
+                        DialogSystem.hide();
+                        if (DialogSystem.onSequenceComplete) {
+                            DialogSystem.onSequenceComplete();
+                        }
+                    }
                 }
             }
         });
     }
 
-    // Klikanie na overlay (tło) - przechodzi dalej
-    const overlay = document.getElementById('dialogOverlay');
+    // Klikanie na overlay
+    const overlay = document.getElementById("dialogOverlay");
     if (overlay) {
-        overlay.addEventListener('click', function (e) {
-            // Tylko jeśli kliknąłeś bezpośrednio na overlay, nie na dialog
-            if (e.target.id === 'dialogOverlay') {
-                if (DialogSystem.sequence && DialogSystem.sequence.length > 0 && DialogSystem.currentIndex < DialogSystem.sequence.length - 1) {
-                    DialogSystem.nextInSequence();
-                } else {
-                    DialogSystem.hide();
+        overlay.addEventListener("click", function(e) {
+            if (e.target.id === "dialogOverlay") {
+                if (DialogSystem.sequence && DialogSystem.sequence.length > 0) {
+                    if (DialogSystem.currentIndex < DialogSystem.sequence.length - 1) {
+                        DialogSystem.nextInSequence();
+                    } else {
+                        DialogSystem.hide();
+                        if (DialogSystem.onSequenceComplete) {
+                            DialogSystem.onSequenceComplete();
+                        }
+                    }
                 }
             }
         });
     }
 
-    // Zamknięcie dialogu klawiszem ESC
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') {
-            DialogSystem.hide();
-        }
-    });
+   
 });

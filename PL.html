@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="cs-CZ">
+<html lang="pl-PL">
 <head>
     <!-- Blokada zmniejszania ekranu poniżej minimalnego rozmiaru -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tovární Hlas - Detektivní Logopedická Hra</title>
+    <title>Fabryka Głosów - Detektywistyczna Gra Logopedyczna</title>
     <link rel="stylesheet" href="src/css/style.css">
 </head>
 <body>
@@ -15,84 +14,78 @@
     <div class="top-bar">
         <!-- LEWY BOK - PRZYCISK DZIENNIKA -->
         <div class="top-bar-left">
-            <img src="assets/images/dziennik.png" alt="Otevřít deník" id="journalBtn" title="Otevřít deník">
+            <img src="assets/images/dziennik.png" alt="Otwórz dziennik" id="journalBtn" title="Otwórz dziennik">
         </div>
-
 
         <!-- ŚRODEK - PUNKTACJA -->
         <div class="top-bar-center">
-            <div id="score" class="cs" title="Body">BODY: 0</div>
+            <div id="score" class="pl" title="Punkty">PUNKTY: 0</div>
             <div id="score1" class="ang" title="Points">POINTS: 0</div>
         </div>
-
 
         <!-- PRAWY BOK - MIKROFON I FLAGA ANGIELSKA -->
         <div class="top-bar-right">
             <button id="globalMicBtn"><span>🎤</span></button>
-            <img src="assets/images/angFlaga.png" alt="Změnit jazyk" id="angBtn" title="English">
+            <img src="assets/images/angFlaga.png" alt="Zmień język" id="angBtn" title="English">
         </div>
     </div>
-
 
     <!-- GŁÓWNY KONTENER GRY - WSZYSTKIE EKRANY TUTAJ -->
     <div class="game-viewport">
         <!-- Main Menu Screen -->
         <div id="mainMenu" class="screen active">
             <div class="container">
-                <h1 class="game-title cs">🏭 Tovární Hlas</h1>
+                <h1 class="game-title pl">🏭 Fabryka Głosów</h1>
                 <h1 class="game-title ang">🏭 Voice Factory</h1>
-                <h2 class="game-subtitle cs">Detektivní Logopedická Hra</h2>
+                <h2 class="game-subtitle pl">Detektywistyczna Gra Logopedyczna</h2>
                 <h2 class="game-subtitle ang">Detective Speech Game</h2>
-                <p class="game-description cs">
-                    Vydej se do role detektiva v tajemné továrně. 
-                    Řeš hádanky používáním hlasu a zdokonaluj výslovnost těžkých českých hlásek.
+                <p class="game-description pl">
+                    Wciel się w rolę detektywa w tajemniczej fabryce. 
+                    Rozwiązuj zagadki używając głosu i doskonaląc wymowę trudnych głosek polskich.
                 </p>
                 <p class="game-description ang">
                     Step into the shoes of a detective in a mysterious factory.
                     Solve puzzles using your voice and improve your pronunciation of challenging Polish sounds.
                 </p>
-                <button id="startGameBtn" class="btn btn-primary cs">Začít vyšetřování</button>
+                <button id="startGameBtn" class="btn btn-primary pl">Rozpocznij śledztwo</button>
                 <button id="startGameBtn1" class="btn btn-primary ang">Start Investigation</button>
-                <button id="helpBtn" class="btn btn-outline cs">Návod</button>
+                <button id="helpBtn" class="btn btn-outline pl">Instrukcje</button>
                 <button id="helpBtn1" class="btn btn-outline ang">Instructions</button>
-                <a class="btn btn-primary" href="PL.html">Polska wersja</a>
+                <a class="btn btn-primary" href="CZ.html">Česká verze</a>
             </div>
         </div>
-
 
         <!-- EKRAN WSTĘPU z przyciskiem TAK -->
         <div id="storyIntroScreen" class="screen">
             <div class="container intro-story-container">
-                <h2 class="intro-story-title cs">Detektive!</h2>
+                <h2 class="intro-story-title pl">Detektywie!</h2>
                 <h2 class="intro-story-title ang">Detective!</h2>
                 <div class="intro-story-text">
-                    <p class="cs">V hloubinách Továrny číhá tajemný sabotér. Mluví syklavým, zkreslením hlasem a ničí vše, co stihne uchopit. Pokud ho nezastavíme včas — nikdo již nikdy nebude mluvit správně! Jenom ty a tvůj hlas nám můžou pomoci." – dopis od majitele továrny</p>
+                    <p class="pl">W zakamarkach Fabryki grasuje tajemniczy sabotażysta. Mówi sepleniącym, zniekształconym głosem i niszczy wszystko, co tylko uda mu się dorwać. Jeśli nie zatrzymamy go na czas — nikt już nigdy nie powie nic poprawnie! Tylko ty i twój glos mogą nam pomóc." – list właściciela fabryki </p>
                     <p class="ang">"In the depths of the Factory lurks a mysterious saboteur. He speaks in a lisping, distorted voice and destroys everything he can get his hands on. If we don't stop him in time — no one will ever speak correctly again! Only you and your voice can help us." – Letter from the Factory owner</p>
-                    <p class="cs">Jsi připraven na tuto výzvu? </p>
+                    <p class="pl">Gotowy na wyzwanie? </p>
                     <p class="ang">Are you ready for this challenge?</p>
                 </div>
-                <button id="introYesBtn" class="btn btn-primary btn-large cs">ANO</button>
+                <button id="introYesBtn" class="btn btn-primary btn-large pl">TAK</button>
                 <button id="introYesBtn1" class="btn btn-primary btn-large ang">YES</button>
             </div>
         </div>
-
 
         <!-- EKRAN Z DRZWIAMI -->
         <div id="doorScreen" class="screen">
             <div class="door-background">
                 <div class="door-main-container">
                     <!-- MIEJSCE NA ZDJĘCIE DRZWI -->
-                    <img src="assets/images/drzwi.png" alt="Dveře do továrny" class="drzwi-image">
+                    <img src="assets/images/drzwi.png" alt="Drzwi do fabryki" class="drzwi-image">
                     
                     <!-- Nakładka z instrukcją -->
                     <div class="door-interaction-overlay">
-                        <h2 class="door-title cs">Vchod do Továrny</h2>
+                        <h2 class="door-title pl">Wejście do Fabryki</h2>
                         <h2 class="door-title ang">Factory Entrance</h2>
 
-
-                        <p class="door-instruction cs">
-                            Aby vstoupit, řekni:<br>
-                            <strong class="voice-command">"Otevři dveře"</strong>
+                        <p class="door-instruction pl">
+                            Aby wejść, wypowiedz:<br>
+                            <strong class="voice-command">"Otwórz drzwi"</strong>
                         </p>
                         <p class="door-instruction ang">
                             To enter, say:<br>
@@ -106,78 +99,72 @@
             </div>
         </div>
 
-
         <!-- Factory View Screen -->
         <div id="factoryScreen" class="screen">
             <div class="factory-background">
                 <div class="factory-container">
                     
-                    <img src="assets/images/Fabryka.png" alt="Továrna" class="factory-image">
-                    <img src="assets/images/maszyna-1-nap.png" id="1-nap" alt="Továrna" class="factory-image" style="display: none;">
-                    <img src="assets/images/kable-n.png" id="kable-nap" alt="Továrna" class="factory-image" style="display: none;">
-                    <img src="assets/images/s-n.png" id="skrzynia-nap" alt="Továrna" class="factory-image" style="display: none;">
-                    <img src="assets/images/robot-n.png" id="robot-nap" alt="Továrna" class="factory-image" style="display: none;">
-                    <img src="assets/images/maszyna2-n.png" id="2-nap" alt="Továrna" class="factory-image" style="display: none;">
-
+                    <img src="assets/images/Fabryka.png" alt="Fabryka" class="factory-image">
+                    <img src="assets/images/maszyna-1-nap.png" id="1-nap" alt="Fabryka" class="factory-image" style="display: none;">
+                    <img src="assets/images/kable-n.png" id="kable-nap" alt="Fabryka" class="factory-image" style="display: none;">
+                    <img src="assets/images/s-n.png" id="skrzynia-nap" alt="Fabryka" class="factory-image" style="display: none;">
+                    <img src="assets/images/robot-n.png" id="robot-nap" alt="Fabryka" class="factory-image" style="display: none;">
+                    <img src="assets/images/maszyna2-n.png" id="2-nap" alt="Fabryka" class="factory-image" style="display: none;">
 
                     <button id="machineBtn1" class="machine-button1" style="display: none;">
-                        <img src="assets/images/maszyna1-mini.png" alt="Stroj1" class="machine-image1">
+                        <img src="assets/images/maszyna1-mini.png" alt="Maszyna1" class="machine-image1">
                     </button>
                     <button id="machineBtn2" class="machine-button2" style="display: block;">
-                        <img src="assets/images/kable-mini.png" alt="Stroj2" class="machine-image2">
+                        <img src="assets/images/kable-mini.png" alt="Maszyna2" class="machine-image2">
                     </button>
                     <button id="machineBtn3" class="machine-button3" style="display: none;">
-                        <img src="assets/images/robot-mini.png" alt="Stroj3" class="machine-image3">
+                        <img src="assets/images/robot-mini.png" alt="Maszyna3" class="machine-image3">
                     </button>
                     <button id="machineBtn4" class="machine-button4" style="display: none;">
-                        <img src="assets/images/s3-mini.png" alt="Stroj4" class="machine-image4">
+                        <img src="assets/images/s3-mini.png" alt="Maszyna4" class="machine-image4">
                     </button>
                     <button id="machineBtn5" class="machine-button5" style="display: none;">
-                        <img src="assets/images/maszyna2-mini.png" alt="Stroj5" class="machine-image5">
+                        <img src="assets/images/maszyna2-mini.png" alt="Maszyna5" class="machine-image5">
                     </button>
                 </div>
             </div>
         </div>
 
-
         <!-- Game Screen Maszyna 1 -->
         <div id="gameScreen" class="screen">
             <div class="game-window">
-                <h2 id="levelTitle" class="levels-instructions">Úroveň</h2>
-                <p id="levelHint" class="level-hints">Nápověda</p>
+                <h2 id="levelTitle" class="levels-instructions">Poziom</h2>
+                <p id="levelHint" class="level-hints">Wskazówka</p>
                 <p id="speechResult" class="speech-feedback"></p>
-                <button id="backBtn" class="btn btn-secondary cs">Zpět</button>
+                <button id="backBtn" class="btn btn-secondary pl">Powrót</button>
                 <button id="backBtn1" class="btn btn-secondary ang">Back</button>
                 <!-- ===== PRZYCISK POMINIĘCIA MASZYNA STERUJĄCA ===== -->
-                <button id="skipButtonGame" class="btn btn-outline cs">PŘESKOČIT</button>
+                <button id="skipButtonGame" class="btn btn-outline pl">POMIŃ</button>
                 <button id="skipButtonGame1" class="btn btn-outline ang">Skip</button>
-
 
             </div>
         </div>
-
 
         <!-- Game Screen Kable -->
         <div id="gameScreenKable" class="screen">
             <div class="kable-background">
                 <div class="kable-container">
-                    <img src="assets/images/kable-4cz.png" alt="Kabely" class="kable-image">
+                    <img src="assets/images/kable-4.png" alt="Kable" class="kable-image">
                     
-                    <img src="assets/images/kab-czerwony.png" alt="Kabely" class="kable-image" id="kab-czerwony" style="display: none;">
-                    <img src="assets/images/kab-brązowy.png" alt="Kabely" class="kable-image" id="kab-brazowy" style="display: none;">
-                    <img src="assets/images/kab-pom.png" alt="Kabely" class="kable-image" id="kab-pomaranczowy" style="display: none;">
-                    <img src="assets/images/kab-żółty.png" alt="Kabely" class="kable-image" id="kab-zolty" style="display: none;">
-                    <img src="assets/images/kab-grana.png" alt="Kabely" class="kable-image" id="kab-granatowy" style="display: none;">
-                    <img src="assets/images/kab-szary.png" alt="Kabely" class="kable-image" id="kab-szary" style="display: none;">
+                    <img src="assets/images/kab-czerwony.png" alt="Kable" class="kable-image" id="kab-czerwony" style="display: none;">
+                    <img src="assets/images/kab-brązowy.png" alt="Kable" class="kable-image" id="kab-brazowy" style="display: none;">
+                    <img src="assets/images/kab-pom.png" alt="Kable" class="kable-image" id="kab-pomaranczowy" style="display: none;">
+                    <img src="assets/images/kab-żółty.png" alt="Kable" class="kable-image" id="kab-zolty" style="display: none;">
+                    <img src="assets/images/kab-grana.png" alt="Kable" class="kable-image" id="kab-granatowy" style="display: none;">
+                    <img src="assets/images/kab-szary.png" alt="Kable" class="kable-image" id="kab-szary" style="display: none;">
                 </div>
                 <p id="kableSpeechResult" class="speech-feedback"></p>
-                <button id="backBtnKable" class="btn btn-secondary cs">Zpět</button>
+                <button id="backBtnKable" class="btn btn-secondary pl">Powrót</button>
                 <button id="backBtnKable1" class="btn btn-secondary ang">Back</button>
-                <button id="skipButtonGameKable" class="btn btn-outline cs">PŘESKOČIT</button>
+                <button id="skipButtonGameKable" class="btn btn-outline pl">POMIŃ</button>
                 <button id="skipButtonGameKable1" class="btn btn-outline ang">Skip</button>
             </div>
         </div>
-
 
         <!-- GAME SCREEN SKRZYNIE -->
         <div id="gameScreenSkrzynie" class="screen">
@@ -195,7 +182,6 @@
             </div>
         </div>
 
-
         <!-- GAME SCREEN RURY -->
             <div id="gameScreenRury" class="screen">
             <div class="rury-background">
@@ -205,37 +191,32 @@
                 </div>
                 <div class="rury-container">
                     <!-- Główne to rury -->
-                    <img src="assets/images/Rury/rury.png" alt="Potrubí" class="rury-image" />
-
+                    <img src="assets/images/Rury/rury.png" alt="Rury" class="rury-image" />
 
                     <!-- RURA 1 - GÓRA LEWA -->
                     <div id="rura1" class="rura-button rura1" style="display: block;">
-                    <img src="assets\images\Rury\2_kolanko.png" alt="Potrubí 1" class="rura-image-item" />
+                    <img src="assets\images\Rury\2_kolanko.png" alt="Rura 1" class="rura-image-item" />
                     </div>
-
 
                     <!-- RURA 2 - GÓRA PRAWA -->
                     <div id="rura2" class="rura-button rura2" style="display: block;">
-                    <img src="assets\images\Rury\4_pozioma.png" alt="Potrubí 2" class="rura-image-item" />
+                    <img src="assets\images\Rury\4_pozioma.png" alt="Rura 2" class="rura-image-item" />
                     </div>
-
 
                     <!-- RURA 3 - DÓŁ LEWA -->
                     <div id="rura3" class="rura-button rura3" style="display: block;">
-                    <img src="assets\images\Rury\1_pionowa.png" alt="Potrubí 3" class="rura-image-item" />
+                    <img src="assets\images\Rury\1_pionowa.png" alt="Rura 3" class="rura-image-item" />
                     </div>
-
 
                     <!-- RURA 4 - DÓŁ PRAWA -->
                     <div id="rura4" class="rura-button rura4" style="display: block;">
-                    <img src="assets\images\Rury\3_trojnik.png" alt="Potrubí 4" class="rura-image-item" />
+                    <img src="assets\images\Rury\3_trojnik.png" alt="Rura 4" class="rura-image-item" />
                     </div>
                 </div>
 
-
                 <!-- KOLUMNA KONTROLKI - FEEDBACK I PRZYCISK (POD GRĄ) -->
                 <div class="rury-controls">
-                    <button id="backBtnRury" class="btn btn-secondary cs">Zpět</button>
+                    <button id="backBtnRury" class="btn btn-secondary pl">Powrót</button>
                     <button id="backBtnRury1" class="btn btn-secondary ang">Back</button>
                 </div>
                 </div>
@@ -243,101 +224,96 @@
             </div>
 
 
-
 <div id="instructionsScreen" class="screen">
     <div class="container instructions-container">
         <!-- WERSJA POLSKA -->
-        <div class="cs">
-            <h2>📖 Návod na Hru</h2>
+        <div class="pl">
+            <h2>📖 Instrukcja Gry</h2>
             
             <div class="instructions-content">
                 <div class="instruction-card">
                     <div class="card-header">
                         <span class="card-icon">🎯</span>
-                        <h3>Cíl Hry</h3>
+                        <h3>Cel Gry</h3>
                     </div>
                     <p class="card-text">
-                        Řeš logopedické hádanky v tajemné továrně! Používej svůj hlas k interakci se stroji a zdokonaluj si výslovnost těžkých českých hlásek.
+                        Rozwiązuj zagadki logopedyczne w tajemniczej fabryce! Używaj swojego głosu do interakcji z maszynami i doskonalenia wymowy trudnych głosek polskich i czeskich.
                     </p>
                 </div>
-
 
                 <div class="instruction-card">
                     <div class="card-header">
                         <span class="card-icon">🎮</span>
-                        <h3>Jak Hrát?</h3>
+                        <h3>Jak Grać?</h3>
                     </div>
                     <ol class="ordered-steps">
                         <li>
                             <span class="step-number">1</span>
                             <div class="step-content">
-                                <strong>Aktivuj mikrofon</strong>
-                                <span class="step-desc">Klikni na tlačítko mikrofonu 🎤 v pravém horním rohu obrazovky</span>
+                                <strong>Aktywuj mikrofon</strong>
+                                <span class="step-desc">Kliknij przycisk mikrofonu 🎤 w prawym górnym rogu ekranu</span>
                             </div>
                         </li>
                         <li>
                             <span class="step-number">2</span>
                             <div class="step-content">
-                                <strong>Mluv zřetelně</strong>
-                                <span class="step-desc">Vyslov dané slovo nebo větu zřetelně a klidně do mikrofonu</span>
+                                <strong>Wypowiedz wyraźnie</strong>
+                                <span class="step-desc">Mów podane słowo lub frazę wyraźnie i spokojnie do mikrofonu</span>
                             </div>
                         </li>
                         <li>
                             <span class="step-number">3</span>
                             <div class="step-content">
-                                <strong>Čekej na výsledek</strong>
-                                <span class="step-desc">Hra rozpozná tvoji výslovnost a přidělí odpovídající body</span>
+                                <strong>Czekaj na rezultat</strong>
+                                <span class="step-desc">Gra rozpozna Twoją wymowę i przyzna odpowiednie punkty</span>
                             </div>
                         </li>
                         <li>
                             <span class="step-number">4</span>
                             <div class="step-content">
-                                <strong>Sbírej a odemkni</strong>
-                                <span class="step-desc">Sbírej body a odemykej nové úrovně a minihry</span>
+                                <strong>Zbieraj i odblokowuj</strong>
+                                <span class="step-desc">Zbieraj punkty i odblokowuj nowe poziomy oraz minigry</span>
                             </div>
                         </li>
                         <li>
-                            <span class="step-number">5</span>
+                            <span class="step-number">4</span>
                             <div class="step-content">
-                                <strong>Body</strong>
-                                <span class="step-desc">Čím lepší výslovnost, tím více bodů a medailí!</span>
+                                <strong>Punkty</strong>
+                                <span class="step-desc">Im lepsza wymowa, tym więcej punktów oraz więcej odznak!</span>
                             </div>
                         </li>
                     </ol>
                 </div>
 
-
                 <div class="instruction-card tips-card">
                     <div class="card-header">
                         <span class="card-icon">💡</span>
-                        <h3>Tipy</h3>
+                        <h3>Wskazówki</h3>
                     </div>
                     <ul class="tips-list">
                         <li>
                             <span class="tip-icon">✓</span>
-                            Mluv zřetelně a klidně — kvalita zvuku ovlivňuje přesnost
+                            Mów wyraźnie i spokojnie — jakość dźwięku wpływa na dokładność
                         </li>
                         <li>
                             <span class="tip-icon">✓</span>
-                            Globální tlačítko mikrofonu se objeví pouze když je potřeba
+                            Globalny przycisk mikrofonu pojawia się tylko gdy jest potrzebny
                         </li>
                         <li>
                             <span class="tip-icon">✓</span>
-                            Každá úroveň má možnost přeskočit nebo vyměnit slova, pokud máš potíže s výslovností, ale pamatuj že lepší výslovnost znamená více bodů!
+                            Każdy poziom ma opcje pominięcia lub wymiany słów, jeśli masz trudności z wymową ale pamiętaj, że lepsza wymowa to więcej punktów!
                         </li>
                         
                         <li>
                             <span class="tip-icon">✓</span>
-                            Prozkoumat deník detektiva a odemknout nové minihry
+                            Eksploruj dziennik detektywa aby odblokować nowe minigry
                         </li>
                     </ul>
                 </div>
             </div>
 
-
-            <button id="backFromInstructionsBtn" class="btn btn-secondary">← Zpět do Menu</button>
+            <button id="backFromInstructionsBtn" class="btn btn-secondary">← Powrót do Menu</button>
         </div>
-
 
         <!-- WERSJA ANGIELSKA -->
         <div class="ang">
@@ -353,7 +329,6 @@
                         Solve speech therapy puzzles in a mysterious factory! Use your voice to interact with machines and improve your pronunciation of difficult Polish and Czech sounds.
                     </p>
                 </div>
-
 
 
                 <div class="instruction-card">
@@ -401,7 +376,6 @@
                 </div>
 
 
-
                 <div class="instruction-card tips-card">
                     <div class="card-header">
                         <span class="card-icon">💡</span>
@@ -430,51 +404,47 @@
             </div>
 
 
-
             <button id="backFromInstructionsBtn" class="btn btn-secondary">← Back to Menu</button>
-
 
         </div>
     </div>
 </div>
 
 
-
         <!-- Dziennik Screen -->
         <div id="journalScreen" class="screen">
             <div class="container book-container">
-                <h2 class="cs">Deník Detektiva</h2>
+                <h2 class="pl">Dziennik Detektywa</h2>
                 <h2 class="ang">Detective's Journal</h2>
                 <div id="book">
                     <!-- Strona 1 -->
-                    <div class="book-page" id="page0">Vítej v deníku!</div>
+                    <div class="book-page" id="page0">Witaj w dzienniku!</div>
                     
                     
                     <!-- Strona 2 -->
                     <div class="book-page" id="page1"> 
-                        <div class="book-page cs">Medaile</div>
+                        <div class="book-page pl">Odznaki</div>
                         <div class="book-page ang">Badges</div>
                         <div class="badges-container">
-                            <img src="assets\images\odznaki\odz-1000cz.png" id="badge1" alt="Medaile 1" class="badge-image" style="display: none;">
-                            <img src="assets\images\odznaki\odz-1500cz.png" id="badge2" alt="Medaile 2" class="badge-image" style="display: none;">
-                            <img src="assets\images\odznaki\odz-2000cz.png" id="badge3" alt="Medaile 3" class="badge-image" style="display: none;">
-                            <img src="assets\images\odznaki\odz-2500cz.png" id="badge4" alt="Medaile 4" class="badge-image" style="display: none;">
-                            <img src="assets\images\odznaki\odz-kab_cz.png" id="badge5" alt="Medaile 5" class="badge-image" style="display: none;">
-                            <img src="assets\images\odznaki\odz-ster_cz.png" id="badge6" alt="Medaile 6" class="badge-image" style="display: none;">
-                            <img src="assets\images\odznaki\odz-sk_cz.png" id="badge7" alt="Medaile 7" class="badge-image" style="display: none;">
-                            <img src="assets\images\odznaki\odz-robot_cz.png" id="badge8" alt="Medaile 8" class="badge-image" style="display: none;">
-                            <img src="assets\images\odznaki\odz-masz2_cz.png" id="badge9" alt="Medaile 9" class="badge-image" style="display: none;">
-                            <img src="assets\images\odznaki\odz-koniec_cz.png" id="badge10" alt="Medaile 10" class="badge-image" style="display: none;">
+                            <img src="assets\images\odznaki\odz-1000.png" id="badge1" alt="Odznaka 1" class="badge-image" style="display: none;">
+                            <img src="assets\images\odznaki\odz-1500.png" id="badge2" alt="Odznaka 2" class="badge-image" style="display: none;">
+                            <img src="assets\images\odznaki\odz-2000.png" id="badge3" alt="Odznaka 3" class="badge-image" style="display: none;">
+                            <img src="assets\images\odznaki\odz-2500.png" id="badge4" alt="Odznaka 4" class="badge-image" style="display: none;">
+                            <img src="assets\images\odznaki\odz-kable.png" id="badge5" alt="Odznaka 5" class="badge-image" style="display: none;;">
+                            <img src="assets\images\odznaki\odz-maszyna1.png" id="badge6" alt="Odznaka 6" class="badge-image" style="display: none;">
+                            <img src="assets\images\odznaki\odz-skrzynka.png" id="badge7" alt="Odznaka 7" class="badge-image" style="display: none;">
+                            <img src="assets\images\odznaki\odz-robot.png" id="badge8" alt="Odznaka 8" class="badge-image" style="display: none;;">
+                            <img src="assets\images\odznaki\odz-masz2.png" id="badge9" alt="Odznaka 9" class="badge-image" style="display: none;">
+                            <img src="assets\images\odznaki\odz-koniec.png" id="badge10" alt="Odznaka 10" class="badge-image" style="display: none;">
                         </div>
                     </div>
                     <!-- STRONA 2: MINIGRA UKŁADANIE SŁOWA -->
                     <div id="page2" class="journal-page" style="display: none;">
                     <div class="book-page">
-                        <h2 class="cs">Řídící Místnost - Hádanka se Slovy</h2>
+                        <h2 class="pl">Pokój Sterowania - Zagadka Słowna</h2>
                         <h2 class="ang">Control Room - Word Puzzle</h2>
-                        <p class="cs">Najdeš starou poznámku v řídící místnosti. Na papíru je napsáno slovo, ale písmena jsou promíchaná...</p>
+                        <p class="pl">Znajdujesz starą notatkę w pokoju sterowania. Na kartce jest wypisane słowo, ale litery są wymieszane...</p>
                         <p class="ang">You find an old note in the control room. The paper has a word written on it, but the letters are mixed up...</p>
-
 
                         <!-- MINIGRA TUTAJ -->
                         <div id="miniGameUkadanieSowa">
@@ -483,22 +453,20 @@
                             
                             <div id="gameOutput" class="word-output"></div>
                             
-                            <button id="resetUkadanieSowaBtn" class="btn btn-secondary cs">Vymazat</button>
+                            <button id="resetUkadanieSowaBtn" class="btn btn-secondary pl">Wyczyść</button>
                             <button id="resetUkadanieSowaBtn1" class="btn btn-secondary ang">Reset</button>
                             
                         </div>
                     </div>
                     </div>
 
-
                     <!-- Strona 4 z minigrą Drag & Drop -->
                     <div class="book-page" id="page3" style="display:none;">
-                        <div id="page3-original-content" class="cs">Osobní poznámky a úspěchy.</div>
+                        <div id="page3-original-content" class="pl">Notatki własne i osiągnięcia.</div>
                         <div id="page3-original-content" class="ang">Personal notes and achievements.</div>
 
-
                         <div id="miniGameFactoryDrag" class="mini-game page-minigame" style="display:none;">
-                            <h3 class="cs">Spoj prvky automatizace s jejich názvy</h3>
+                            <h3 class="pl">Dopasuj elementy automatyki do nazw</h3>
                             <h3 class="ang">Match automation elements to their names</h3>
                             <div id="factoryImages" class="drag-images-container"></div>
                             <div id="factoryTargets" class="drop-targets-container"></div>
@@ -507,30 +475,27 @@
                         </div>
                     </div>
 
-
                     <!-- Strona 4 z minigrą Kable-->
                     <div id="page4" class="book-page" style="display:none;">
                         <div id="miniGamePolskoCzeskieKable" style="display: none;">
                             <div class="overlay-minigame">
                                 <div class="cables-game-container">
                                     <div class="cables-column left-cables">
-                                        <h4 class="cs">Čeština</h4>
-                                        <h4 class="ang">Czech</h4>
+                                        <h4 class="pl">Polski</h4>
+                                        <h4 class="ang">Polish</h4>
                                         <div id="polishCables" class="cables-list"></div>
                                     </div>
 
-
                                     <canvas id="cablesCanvas" class="cables-canvas"></canvas>
 
-
                                     <div class="cables-column right-cables">
-                                        <h4 class="cs">Polština</h4>
-                                        <h4 class="ang">Polish</h4>
+                                        <h4 class="pl">Čeština</h4>
+                                        <h4 class="ang">Czech</h4>
                                         <div id="czechCables" class="cables-list"></div>
                                     </div>
                                 </div>
                                 <div class="game-result">
-                                    <div id="cablesResult" class="word-output cs">Spojuj všechna slova!</div>
+                                    <div id="cablesResult" class="word-output pl">Połącz wszystkie słowa!</div>
                                     <div id="cablesResult1" class="word-output ang">Connect all the words!</div>
                                 </div>
                                 
@@ -539,11 +504,10 @@
                     </div>
                 </div>
 
-
-                <div class="book-nav cs">
-                    <button class="btn btn-secondary" id="prevPageBtn">⬅ Předchozí stránka</button>
-                    <button id="backFromJournalBtn" >Zpět</button>
-                    <button class="btn btn-secondary" id="nextPageBtn">Následující stránka ➡</button>
+                <div class="book-nav pl">
+                    <button class="btn btn-secondary" id="prevPageBtn">⬅ Poprzednia strona</button>
+                    <button id="backFromJournalBtn" >Powrót</button>
+                    <button class="btn btn-secondary" id="nextPageBtn">Następna strona ➡</button>
                 </div>
                 <div class="book-nav ang">
                     <button class="btn btn-secondary" id="prevPageBtn1">⬅ Previous page</button>
@@ -554,28 +518,26 @@
         </div>
     </div>
 
-
     <!-- SYSTEM DIALOGÓW -->
     <div class="dialog-overlay" id="dialogOverlay">
         <div class="dialog-box">
             <div class="dialog-speaker-icon" id="dialogIcon">🗣️</div>
             <div class="dialog-content">
                 <div class="dialog-speaker-name" id="dialogSpeakerName">NPC</div>
-                <div class="dialog-text" id="dialogText">Text dialogu...</div>
+                <div class="dialog-text" id="dialogText">Tekst dialogo...</div>
             </div>
             <button class="dialog-close-btn" id="dialogCloseBtn">✕</button>
         </div>
     </div>
 
-
     <!-- Scripts -->
-    <script src="src/jsCZ/A_Main.js"></script>
-    <script src="src/jsCZ/maze-game.js"></script>
-    <script src="src/jsCZ/CustomAlert.js"></script>
-    <script src="src/jsCZ/Drag-Drop.js"></script>
-    <script src="src/jsCZ/Kable.js"></script>
-    <script src="src/jsCZ/UkladanieSlowa.js"></script>
-    <script src="src/jsCZ/PoziomSkrzynie.js"></script>
-    <script src="src/jsCZ/Dialogi.js"></script>
+    <script src="src/jsPL/A_Main.js"></script>
+    <script src="src/jsPL/maze-game.js"></script>
+    <script src="src/jsPL/CustomAlert.js"></script>
+    <script src="src/jsPL/Drag-Drop.js"></script>
+    <script src="src/jsPL/Kable.js"></script>
+    <script src="src/jsPL/UkladanieSlowa.js"></script>
+    <script src="src/jsPL/PoziomSkrzynie.js"></script>
+    <script src="src/jsPL/Dialogi.js"></script>
 </body>
 </html>

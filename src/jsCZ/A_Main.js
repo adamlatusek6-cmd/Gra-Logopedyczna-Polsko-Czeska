@@ -530,7 +530,11 @@ class VoiceFactoryGame {
                     { speakerId: 'detektyw', text: 'Ano, tebe.' },
                     { speakerId: 'sabotazysta', text: 'P-promiň… Už n-nebudu. P-prosím… opravte můj hlas.' },
                     { speakerId: 'wlasciciel', text: 'Detektive, bez tebe by se továrna neutrvala! Sabotér byl chycen a my konečně můžeme opravit nejen stroje, ale i… jeho.' },
-                ]);
+                ], () => {
+                    // ✅ TO SIĘ WYKONAUJE PO OSTATNIM DIALOGU!
+                    console.log("✅ CALLBACK ZADZIAŁAŁ!");
+                    this.checkAllBadges();
+                });
 
 
             } else {
@@ -548,7 +552,11 @@ class VoiceFactoryGame {
                     { speakerId: 'wlasciciel', text: 'Detective, without you the factory would not have survived! The villain has been caught, and we can finally fix not only the machines, but also… him.' },
 
 
-                ]);
+                ], () => {
+                    // ✅ TO SIĘ WYKONAUJE PO OSTATNIM DIALOGU!
+                    console.log("✅ CALLBACK ZADZIAŁAŁ!");
+                    this.checkAllBadges();
+                });
 
             }
             this.checkAllBadges();
@@ -720,13 +728,13 @@ class VoiceFactoryGame {
                 // Pokaż alertu
                 if (this.EngMode === false) {
                     customAlert.success(
-                        'GRATULACE! Odemkl jsi všechny odznaky a dokončil hru na 100%! Obdržíš speciální odznak Mistra Továrny Hlasů!',
-                        'Mistrovská Úroveň!'
+                        'GRATULACE! Odemkl jsi všechny odznaky a dokončil jsi hru na 100%! Dostáváš speciální odznak Mistra Voice Factory! Děkujeme za hru.',
+                        'Konec hry na mistrovské úrovni!'
                     );
                 } else {
                     customAlert.success(
-                        'CONGRATULATIONS! You have unlocked all badges and completed the game 100%! You receive a special Master of the Voice Factory badge!',
-                        'Master Level!'
+                        'CONGRATULATIONS! You have unlocked all badges and completed the game 100%! You receive a special Master of the Voice Factory badge! Thank you for playing',
+                        'The end on a master Level!'
                     );
                 }
 
@@ -735,7 +743,20 @@ class VoiceFactoryGame {
                     this.badge10.style.display = "block";
                 }
             }
-        }
+            
+        }else{
+                if (this.EngMode === false) {
+                    customAlert.success(
+                        'GRATULACE! Opravil jsi Továrnu na hlas úplně! Děkujeme za hru!',
+                        'KONEC HRY!'
+                    );
+                } else {
+                    customAlert.success(
+                        'CONGRATULATIONS! You have fixed the factory! Thank you for playing!',
+                        'THE END!'
+                    );
+                }
+            }
     }
 
 
@@ -786,7 +807,7 @@ class VoiceFactoryGame {
         if (this.EngMode === false) {
             DialogSystem.showSequence([
                 { speakerId: 'info', text: 'Dveře se otevírají s vrzáním. Uvnitř je všechno promíchané - listy s pokyny leží na podlaze a obrazovky zobrazují náhodné haraburdí písmen.  ' },
-                { speakerId: 'wlasciciel', text: 'W tym pomieszczeniu sabotażysta poplątał wszystkie instrukcje tak aby fabryka słów produkowała wadliwe słowa, musisz wypowiedzieć je poprawnie, aby przywrócić maszynę do normy. Poradzisz sobie?”' },
+                { speakerId: 'wlasciciel', text: 'V této místnosti sabotér popletl všechny instrukce, aby továrna na slova vyráběla vadná slova. Musíš je vyslovit správně, aby se stroj vrátil do normálu. Zvládneš to?' },
             ]);
         } else {
             //english
@@ -1022,12 +1043,12 @@ class VoiceFactoryGame {
         } else if (transcript.includes("zluty") || transcript.includes("žlutý")) {
             this.KabZolty.style.display = "block";
             this.kableAnswear();
-        } else if (transcript.includes("temne modry") || transcript.includes("tmavě modrý")) {
+        } else if (transcript.includes("temne modry") || transcript.includes("tmavě")) {
             this.KabGranatowy.style.display = "block";
             this.kableAnswear();
         } else if (transcript.includes("sedy") || transcript.includes("šedý")) {
             this.KabSzary.style.display = "block";
-            this.kableAnswea
+            this.kableAnswear();
         }else {
             if (this.EngMode === false) this.showFeedback("❌ Zkuste znovu!", "#ef4444");
             else this.showFeedback("❌ Try again!", "#ef4444");
@@ -1058,7 +1079,7 @@ class VoiceFactoryGame {
         }
     }
     endKableGame() {
-        if (this.EngMode === false) customAlert.success(`🎉 Gratulace! Stroj je plně funkční. Zkontrolujte, které stroje je třeba dále opravit. Obdrželi jste také odznak!`, "Kable naprawione");
+        if (this.EngMode === false) customAlert.success(`🎉 Gratulace! Stroj je plně funkční. Zkontrolujte, které stroje je třeba dále opravit. Obdrželi jste také odznak!`, "Kabely jsou opraveny");
         else customAlert.success1(`🎉 Congratulations! The machine is fully operational. Check which machines need to be repaired next. You also received a badge!`, "Cables Repaired");
         this.machineBtn2.style.display = "none";
         this.KableNap.style.display = "block";
@@ -1188,20 +1209,21 @@ class VoiceFactoryGame {
     // BAZA OWOCÓW - BEZ POWTÓRZEŃ MIĘDZY LEWYMI A PRAWYMI
     RURY_FRUITS_DATABASE = {
         left: [
-            'jabłko', 'gruszka', 'śliwka', 'brzoskwinia', 'nektaryna',
-            'truskawka', 'malina', 'jeżyna', 'porzeczka', 'agrest',
-            'borówka', 'żurawina', 'pigwa', 'nispero', 'owoce leśne',
-            'morwa', 'winia', 'cały arbuz', 'wielkie mango', 'słodki banan',
-            'świeża brzoskwinia', 'dojrzały kiwi', 'soczyste gruszki', 'czerwone truskawki', 'czarne jeżyny'
+            'procesor', 'řídící prvek', 'napájení', 'kódování', 'signál',
+            'rozhraní', 'zesilování', 'výstup', 'obvod', 'přístroj',
+            'regulátor', 'kompilátor', 'protokol', 'oscilace', 'modulace',
+            'dekódování', 'binární', 'posuvník', 'kódování', 'sekvence',
+            'asynchronní', 'filtrování', 'zesílení', 'diagnostika', 'přesnost'
         ],
         right: [
-            'banan', 'ananas', 'wiśnia', 'czereśnia', 'morela',
-            'melon', 'arbuz', 'grejpfrut', 'jagoda', 'aronia',
-            'dzika róża', 'acerola', 'liczi', 'pitaja',
-            'rambutan', 'durian', 'karambola', 'cherimoya',
-            'granatowiec', 'kumkwat', 'żurawina amerykańska', 'owoce aronii', 'świeży ananas'
+            'spojka', 'zesilovač', 'tlumič', 'kapacita', 'dioda',
+            'tranzistor', 'termistor', 'varistor', 'prosévání', 'měnič',
+            'demodulátor', 'komparátor', 'generátor', 'oscilátor', 'integrátor',
+            'komutátor', 'nádoba', 'stabilizátor', 'transformátor', 'oddělovač',
+            'korektor', 'kaskáda', 'spřažení'
         ]
     };
+
 
     startGameRury() {
         this.hideAllScreens();
@@ -1216,10 +1238,9 @@ class VoiceFactoryGame {
         if (this.ruryEnd === false) {
             if (this.EngMode === false) {
                 DialogSystem.showSequence([
-                    { speakerId: 'info', text: 'Vstupuješ do místnosti a vidíš, jak jsou potrubí zkroucena a zkřivena' },
+                    { speakerId: 'info', text: 'Vstupuješ do místnosti a vidíš, že jsou trubky ohnuté a zkroucené' },
                     { speakerId: 'wlasciciel', text: 'Ó ne! Toto je hlavní potrubí v továrně. Musíme to rychle opravit' },
                 ]);
-
             } else {
                 //english
                 DialogSystem.showSequence([
@@ -1243,7 +1264,6 @@ class VoiceFactoryGame {
         }
     }
 
-
     initRuryGame() {
         this.RURY_ROTATION_ANGLE = 45;
         this.ruryState = { rura1: 90, rura2: 180, rura3: 225, rura4: 225 };
@@ -1256,44 +1276,38 @@ class VoiceFactoryGame {
         this.displayRuryInitialRotations();
         this.generateRuryWords();
         document.getElementById('RurySpeechResult').textContent = '';
-        this.showFeedback('🍎 Vyslov názvy ovoce, aby se potrubí otáčela!', '#3b82f6');
+        
+        if (this.EngMode === false) {
+                this.showFeedback('Vyslovuj jména pro otáčení trubek!', '#3b82f6');
+            } else {
+                this.showFeedback('Pronounce the words to rotate the pipes!', '#3b82f6');
+            }
     }
 
     generateRuryWords() {
-        // KLUCZOWE: Tworzymy nowe pule słów dla każdej rury
-        // Każda rura dostanie UNIKALNE słowo z bazy
-
-        const leftWordsPool = [...this.RURY_FRUITS_DATABASE.left];  // Kopia lewych owoców
-        const rightWordsPool = [...this.RURY_FRUITS_DATABASE.right]; // Kopia prawych owoców
-
+        const leftWordsPool = [...this.RURY_FRUITS_DATABASE.left];
+        const rightWordsPool = [...this.RURY_FRUITS_DATABASE.right];
 
         this.ruryWords = {};
 
-        // Dla każdej rury losuj RÓŻNE słowa
         for (let i = 1; i <= 4; i++) {
             const ruraId = `rura${i}`;
 
-            // Losuj owoc dla lewej strony (i usuń go z puli aby się nie powtórzył)
             const leftIndex = Math.floor(Math.random() * leftWordsPool.length);
             const leftFruit = leftWordsPool[leftIndex];
-            leftWordsPool.splice(leftIndex, 1); // ← USUŃ aby się nie powtórzył
+            leftWordsPool.splice(leftIndex, 1);
 
-            // Losuj owoc dla prawej strony (i usuń go z puli aby się nie powtórzył)
             const rightIndex = Math.floor(Math.random() * rightWordsPool.length);
             const rightFruit = rightWordsPool[rightIndex];
-            rightWordsPool.splice(rightIndex, 1); // ← USUŃ aby się nie powtórzył
+            rightWordsPool.splice(rightIndex, 1);
 
-            // Przydziel owoce do tej rury
             this.ruryWords[ruraId] = {
                 left: leftFruit,
                 right: rightFruit
             };
         }
 
-        // Pokaż słowa dla każdej rury
         this.displayRuryWords();
-
-        // Debug log
         console.log('🍎 Wylosowane owoce dla rur (BEZ POWTÓRZEŃ):', this.ruryWords);
     }
 
@@ -1303,11 +1317,9 @@ class VoiceFactoryGame {
             const ruraElement = document.getElementById(ruraId);
 
             if (ruraElement) {
-                // Usuń stare słowa jeśli istnieją
                 const oldWordsContainer = ruraElement.querySelector('.rura-words-container');
                 if (oldWordsContainer) oldWordsContainer.remove();
 
-                // Dodaj nowe słowa
                 const wordsDiv = document.createElement('div');
                 wordsDiv.className = 'rura-words-container';
 
@@ -1325,18 +1337,16 @@ class VoiceFactoryGame {
             }
         }
     }
-    // ===== 🆕 NOWA METODA - Pokazanie przycisku pominięcia =====
+
     showSkipButtonRury() {
         if (this.skipButtonRury) return;
 
         this.skipButtonRury = document.createElement('button');
 
-        // 🆕 JĘZYK-ZALEŻNY TEKST
         if (this.EngMode) {
-            this.skipButtonRury.textContent = '⏳ Skip Fruit (-50 pts)';
+            this.skipButtonRury.textContent = '⏳ Change words layout (-50 pts)';
         } else {
-            this.skipButtonRury.textContent = '⏳ Přeskoč ovoce (-50 bodů)';
-
+            this.skipButtonRury.textContent = '⏳ Změnit slova (-50 bodů)';
         }
 
         this.skipButtonRury.className = 'btn btn-secondary';
@@ -1354,27 +1364,21 @@ class VoiceFactoryGame {
         }
     }
 
-
-
-    // ===== 🆕 NOWA METODA - Obsługa kliknięcia przycisku pominięcia =====
     skipRuryFruit() {
-        this.showFeedback(
-            '⏳ Ovoce přeskočeno. Bez otáčení potrubí!',
-            '#f97316'
-        );
+        if (this.EngMode) {
+            this.showFeedback('⏳ Words are changed', '#f97316')
+        } else {
+            this.showFeedback('⏳ Slova změněna', '#f97316');
+        }
 
-
-        // ← NOWE: KARA PUNKTOWA
         this.addPoints(-50);
 
-        // ← NOWE: FEEDBACK O KARZE
-        this.showFeedback(
-            '❌ Pokuta: -50 bodů za použití tlačítka!',
-            '#ef4444'
-        );
+        if (this.EngMode) {
+            this.showFeedback('❌ Penality: -50 points!', '#ef4444')
+        } else {
+            this.showFeedback('❌ Penalizace: -50 bodů!', '#ef4444');
+        }
 
-
-        // Reszta bez zmian
         this.ruryErrorCount = 0;
 
         if (this.skipButtonRury) {
@@ -1385,67 +1389,68 @@ class VoiceFactoryGame {
         this.generateRuryWords();
         this.displayRuryWords();
 
-        this.showFeedback('🔄 Nowe owoce! Spróbuj ponownie.', '#3b82f6');
+        if (this.EngMode) {
+            this.showFeedback('🔄 New words! Try again.', '#3b82f6');
+        } else {
+            this.showFeedback('🔄 Nová slova! Zkus znovu.', '#3b82f6');
+        }
     }
 
-
-    // ===== CAŁKOWICIE ZMIENIONA checkRuryAnswer() =====
     checkRuryAnswer(transcript) {
         const lowerTranscript = transcript.toLowerCase().trim();
 
         let rotated = false;
         let matchedRura = null;
 
-        // 🔄 Sprawdzaj każdą rurę, ale obróć TYLKO JEDNĄ
         for (let i = 1; i <= 4; i++) {
             const ruraId = `rura${i}`;
             const words = this.ruryWords[ruraId];
 
-            // Jeśli znalazłeś już dopasowanie, nie szukaj więcej
             if (matchedRura) break;
 
-            // ✅ Sprawdzenie LEWEGO słowa
             if (lowerTranscript.includes(words.left.toLowerCase())) {
                 this.rotateRura(ruraId, -1);
-                this.showFeedback(`✅ ${words.left} - Rura ${i} w lewo!`, '#10b981');
+                 if (this.EngMode) {
+                    this.showFeedback(`✅ ${words.right} -Pipe ${i} to the left!`, '#10b981');
+                } else {
+                    this.showFeedback(`✅ ${words.right} - Trubka ${i} doleva!`, '#10b981');
+                }
 
                 rotated = true;
                 matchedRura = i;
 
-                // 🆕 RESET licznika błędów na poprawne słowo
                 this.ruryErrorCount = 0;
 
-                // ✅ Usuń przycisk jeśli istnieje
                 if (this.skipButtonRury) {
                     this.skipButtonRury.remove();
                     this.skipButtonRury = null;
                 }
 
-                // 🔄 Zmień słowa na NOWE
                 this.changeFruitForRura(ruraId);
                 this.displayRuryWords();
 
                 break;
             }
 
-            // ✅ Sprawdzenie PRAWEGO słowa
             else if (lowerTranscript.includes(words.right.toLowerCase())) {
                 this.rotateRura(ruraId, 1);
-                this.showFeedback(`✅ ${words.right} - Rura ${i} w prawo!`, '#10b981');
+                
+                 if (this.EngMode) {
+                    this.showFeedback(`✅ ${words.right} -Pipe ${i} to the right!`, '#10b981');
+                } else {
+                    this.showFeedback(`✅ ${words.right} - Trubka ${i} doprava!`, '#10b981');
+                }
 
                 rotated = true;
                 matchedRura = i;
 
-                // 🆕 RESET licznika błędów na poprawne słowo
                 this.ruryErrorCount = 0;
 
-                // ✅ Usuń przycisk jeśli istnieje
                 if (this.skipButtonRury) {
                     this.skipButtonRury.remove();
                     this.skipButtonRury = null;
                 }
 
-                // 🔄 Zmień słowa na NOWE
                 this.changeFruitForRura(ruraId);
                 this.displayRuryWords();
 
@@ -1453,39 +1458,44 @@ class VoiceFactoryGame {
             }
         }
 
-        // ❌ NIE ZNALEZIONO DOPASOWANIA
         if (!rotated) {
-            // 🆕 ZWIĘKSZ licznik błędów
             this.ruryErrorCount++;
 
+            if (this.EngMode) {
             this.showFeedback(
-                `❌ Ovoce nerozpoznáno. Zkuste znovu! (${this.ruryErrorCount}/${this.ruryMaxErrors})`,
+                `❌ Word not found. Please try again! (${this.ruryErrorCount}/${this.ruryMaxErrors})`,
                 '#ef4444'
             );
-
-
-            // 🆕 SPRAWDZENIE LIMITU BŁĘDÓW
-            if (this.ruryErrorCount >= this.ruryMaxErrors) {
-                this.showSkipButtonRury();  // ← POKAŻ PRZYCISK
-
+            } else {
                 this.showFeedback(
-                    '⚠️ Dosáhl jsi 3 chyb! Tlačítko přeskočení se objevilo.',
-                    '#f97316'
+                `❌ Slovo není rozpoznáno. Zkus znovu! (${this.ruryErrorCount}/${this.ruryMaxErrors})`,
+                '#ef4444'
                 );
+            }
 
+            if (this.ruryErrorCount >= this.ruryMaxErrors) {
+                this.showSkipButtonRury();
+
+                if (this.EngMode) {
+                this.showFeedback(
+                    '⚠️ You reached 3 errors! The skip button is now available."',
+                    '#f97316'
+                    );
+                } else {
+                    this.showFeedback(
+                    '⚠️ Dosáhl jsi 3 chyby! Tlačítko přeskočení je nyní dostupné.',
+                    '#f97316'
+                    );
+                }
             }
 
             this.recordFailedAttempt('rury');
         }
 
-        // Sprawdzenie czy wszystkie rury są poprawnie ustawione
         setTimeout(() => this.checkRuryComplete(), 600);
     }
 
-
-    // 🆕 NOWA METODA - ZMIENIA SŁOWA DLA WYBRANEJ RURY
     changeFruitForRura(ruraId) {
-        // Pobierz wszystkie INNE rury (które już mają słowa)
         const usedLeftFruits = new Set();
         const usedRightFruits = new Set();
 
@@ -1497,7 +1507,6 @@ class VoiceFactoryGame {
             }
         }
 
-        // Stwórz pule dostępnych owoców (wyłącz już używane)
         let availableLeftFruits = this.RURY_FRUITS_DATABASE.left.filter(
             fruit => !usedLeftFruits.has(fruit)
         );
@@ -1505,7 +1514,6 @@ class VoiceFactoryGame {
             fruit => !usedRightFruits.has(fruit)
         );
 
-        // Jeśli brakuje dostępnych owoców (co jest rzadkie), resetuj
         if (availableLeftFruits.length === 0) {
             availableLeftFruits = this.RURY_FRUITS_DATABASE.left;
         }
@@ -1513,7 +1521,6 @@ class VoiceFactoryGame {
             availableRightFruits = this.RURY_FRUITS_DATABASE.right;
         }
 
-        // Losuj NOWE owoce dla tej rury
         const newLeftFruit = availableLeftFruits[
             Math.floor(Math.random() * availableLeftFruits.length)
         ];
@@ -1521,41 +1528,33 @@ class VoiceFactoryGame {
             Math.floor(Math.random() * availableRightFruits.length)
         ];
 
-        // Przydziel NOWE owoce
         this.ruryWords[ruraId] = {
             left: newLeftFruit,
             right: newRightFruit
         };
 
-        // 🔄 ZAKTUALIZUJ WYŚWIETLANE SŁOWA NA EKRANIE
         this.updateRuraWordsDisplay(ruraId);
 
         console.log(`🔄 Rura ${ruraId.replace('rura', '')} - NOWE SŁOWA:`, this.ruryWords[ruraId]);
     }
 
-    // 🆕 METODA - AKTUALIZUJE JĘZYK PRZYCISKÓW
     updateRuryButtonsLanguage() {
-
-
         if (this.skipButtonRury) {
             if (this.EngMode) {
-                this.skipButtonRury.textContent = '⏳ Změň slova (-50 bodů)';
+                this.skipButtonRury.textContent = '⏳ Změnit slova (-50 bodů)';
             } else {
                 this.skipButtonRury.textContent = '⏳ Change words (-50 pts)';
             }
         }
     }
 
-    // 🆕 METODA - AKTUALIZUJE WYŚWIETLANE SŁOWA NA EKRANIE
     updateRuraWordsDisplay(ruraId) {
         const ruraElement = document.getElementById(ruraId);
 
         if (ruraElement) {
-            // Usuń stare słowa
             const oldWordsContainer = ruraElement.querySelector('.rura-words-container');
             if (oldWordsContainer) oldWordsContainer.remove();
 
-            // Dodaj NOWE słowa
             const wordsDiv = document.createElement('div');
             wordsDiv.className = 'rura-words-container';
 
@@ -1573,8 +1572,6 @@ class VoiceFactoryGame {
         }
     }
 
-
-    // ✅ NOWA WERSJA
     rotateRura(ruraId, direction) {
         this.ruryState[ruraId] += direction * this.RURY_ROTATION_ANGLE;
         const ruraElement = document.getElementById(ruraId);
@@ -1584,17 +1581,13 @@ class VoiceFactoryGame {
         }
     }
 
-
     checkRuryComplete() {
-        // Sprawdź czy WSZYSTKIE rury mają obrót = 0 (wielokrotność 360)
         let allCorrect = true;
 
         for (let i = 1; i <= 4; i++) {
             const ruraId = `rura${i}`;
-            // Normalizuj obrót do zakresu 0-360
             const normalizedRotation = ((this.ruryState[ruraId] % 360) + 360) % 360;
 
-            // Jeśli obrót to nie 0, rura nie jest prawidłowo ustawiona
             if (normalizedRotation !== 0) {
                 allCorrect = false;
                 break;
