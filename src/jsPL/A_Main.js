@@ -20,10 +20,10 @@ class VoiceFactoryGame {
         this.EngMode = false;
         this.previousScreenBeforeJournal = null;
         this.gameerrorsound = 0;
-        this.ruryEnd = false;
-        this.ruryStart = false;
-        this.sterujacaEnd = false;
-        this.sterujacaHint = false;
+        this.ruryEnd = true;
+        this.ruryStart = true;
+        this.sterujacaEnd = true;
+        this.sterujacaHint = true;
         this.GameFinal = false;
 
 
